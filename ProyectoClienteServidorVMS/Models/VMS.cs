@@ -8,6 +8,6 @@ namespace ProyectoClienteServidorVMS.Models
 {
     public class VMS
     {
-
+        public string Mensaje { get; set; } = null!;
     }
 }

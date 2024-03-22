@@ -7,8 +7,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoClienteServidorVMS.Views"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
+        Title="MainView"
+        WindowStartupLocation="CenterScreen"
+        Height="600"
+        Width="1200">
+    <Window.DataContext>
+        <vm:VMSViewModel />
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".2*" />
+            <ColumnDefinition Width=".8*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="20">
+            <TextBlock Text="VMS Recibidos:"
+                       FontSize="20" />
+            <ListBox ItemsSource="{Binding ListaVMS}"
+                     SelectedIndex="{Binding Indicevms}"
+                     SelectedItem="{Binding Vms}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Mensaje}"
+                                       FontSize="16" />
+                            <Button Style="{x:Null}" 
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.EliminarCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Cursor="Hand"
+                                    Margin="20,0,0,0">
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        <TextBlock Text="{Binding Mensaje, StringFormat='Eliminar: {0}'}" />
+                                    </ToolTip>
+                                </Button.ToolTip>
+                                <materialDesign:PackIcon 
+                                    Width="25"
+                                    Height="25"
+                                    Foreground="Red"
+                                    Kind="Delete" />
+                            </Button>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <Border Background="#2B2E39"
+                Grid.Column="1">
+            <TextBlock Text="{Binding Vms.Mensaje}"
+                       FontSize="50"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="Orange" />
+        </Border>
     </Grid>
 </Window>
