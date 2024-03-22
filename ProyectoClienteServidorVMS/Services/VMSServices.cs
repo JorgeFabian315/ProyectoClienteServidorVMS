@@ -13,11 +13,12 @@ namespace ProyectoClienteServidorVMS.Services
 {
     public class VMSServices
     {
+        private int _puerto = 6001;
         HttpListener server = new();
         public event EventHandler<VMS>? VMSRecibido;
         public VMSServices()
         {
-            server.Prefixes.Add("http://*:6001/vms/");
+            server.Prefixes.Add($"http://*:{_puerto}/vms/");
         }
         public void Iniciar()
         {
@@ -37,15 +38,18 @@ namespace ProyectoClienteServidorVMS.Services
                 if (context != null)
                 {
                     var pagina = File.ReadAllText("assets/index.html");
-                    byte[] buffer = Encoding.UTF8.GetBytes(pagina); 
+                    byte[] buffer = Encoding.UTF8.GetBytes(pagina);
 
-                    if(context.Request.Url != null)
+                    var paginaRegresar = File.ReadAllText("assets/regresar.html");
+                    byte[] buffer2 = Encoding.UTF8.GetBytes(paginaRegresar);
+
+                    if (context.Request.Url != null)
                     {
                         if(context.Request.Url.LocalPath == "/vms/")
                         {
                             context.Response.ContentLength64 = buffer.Length;
                             context.Response.OutputStream.Write(buffer,0,buffer.Length);
-                            context.Response.StatusCode = 200;
+                            context.Response.StatusCode = (int)HttpStatusCode.OK;
                             context.Response.Close();
                         }
 
@@ -54,6 +58,9 @@ namespace ProyectoClienteServidorVMS.Services
                             byte[] bufferdatos = new byte[context.Request.ContentLength64];
                             context.Request.InputStream.Read(bufferdatos, 0, bufferdatos.Length);
                             string datos = Encoding.UTF8.GetString(bufferdatos);
+
+                            context.Response.ContentLength64 = buffer2.Length;
+                            context.Response.OutputStream.Write(buffer2, 0, buffer2.Length);
 
                             var diccionario = HttpUtility.ParseQueryString(datos);
 
@@ -67,12 +74,12 @@ namespace ProyectoClienteServidorVMS.Services
                                 VMSRecibido?.Invoke(this, vms);
                             });
 
-                            context.Response.StatusCode = 200;
+                            context.Response.StatusCode = (int)HttpStatusCode.OK;
                             context.Response.Close();
                         }
                         else
                         {
-                            context.Response.StatusCode = 200;
+                            context.Response.StatusCode = 400;
                             context.Response.Close();   
                         }
                     }

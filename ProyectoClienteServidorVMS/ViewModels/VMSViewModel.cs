@@ -17,7 +17,7 @@ namespace ProyectoClienteServidorVMS.ViewModels
 {
     public partial class VMSViewModel: ObservableObject
     {
-        VMSServices server = new();
+        private VMSServices _server = new();
         public ObservableCollection<VMS> ListaVMS { get; set; } = new();
 
         [ObservableProperty]
@@ -27,8 +27,8 @@ namespace ProyectoClienteServidorVMS.ViewModels
         public int indicevms;
         public VMSViewModel()
         {
-            server.Iniciar();
-            server.VMSRecibido += Server_VMSRecibido;
+            _server.Iniciar();
+            _server.VMSRecibido += Server_VMSRecibido;
             CargarDatos();
             Vms = ListaVMS.FirstOrDefault() ?? new();
 
@@ -43,6 +43,10 @@ namespace ProyectoClienteServidorVMS.ViewModels
                     ListaVMS.Add(e);
                     Indicevms = ListaVMS.IndexOf(e);
                     GuardarArchivo();
+                }
+                else
+                {
+                    MessageBox.Show("Se intento enviar un mensaje vacío"); // no es correcto hacer esto, es temporal
                 }
             }
         }
@@ -59,18 +63,18 @@ namespace ProyectoClienteServidorVMS.ViewModels
         }
 
 
-        string nombreJson = "vms.json";
+        private string _nombreJson = "vms.json";
         public void GuardarArchivo()
         {
             var json = JsonSerializer.Serialize(ListaVMS);
-            File.WriteAllText(nombreJson, json);
+            File.WriteAllText(_nombreJson, json);
         }
 
         public void CargarDatos()
         {
-            if (File.Exists(nombreJson))
+            if (File.Exists(_nombreJson))
             {
-                var json = File.ReadAllText(nombreJson);
+                var json = File.ReadAllText(_nombreJson);
                 var datos = JsonSerializer.Deserialize<ObservableCollection<VMS>?>(json);
                 if (datos != null)
                     ListaVMS = datos;
