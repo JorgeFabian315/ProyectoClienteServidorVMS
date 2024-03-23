@@ -49,6 +49,7 @@ namespace ProyectoClienteServidorVMS.Services
                         {
                             context.Response.ContentLength64 = buffer.Length;
                             context.Response.OutputStream.Write(buffer,0,buffer.Length);
+
                             context.Response.StatusCode = (int)HttpStatusCode.OK;
                             context.Response.Close();
                         }
