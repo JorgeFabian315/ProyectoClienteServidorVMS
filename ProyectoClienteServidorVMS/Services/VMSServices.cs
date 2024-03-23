@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -32,56 +33,39 @@ namespace ProyectoClienteServidorVMS.Services
 
         private void Escuchar()
         {
-            while(true)
+            while (true)
             {
                 HttpListenerContext? context = server.GetContext();
                 if (context != null)
                 {
-                    var pagina = File.ReadAllText("assets/index.html");
-                    byte[] buffer = Encoding.UTF8.GetBytes(pagina);
-
-                    var paginaRegresar = File.ReadAllText("assets/regresar.html");
-                    byte[] buffer2 = Encoding.UTF8.GetBytes(paginaRegresar);
+                    string indexHtml = File.ReadAllText("assets/index.html");
+                    string estilos = File.ReadAllText("assets/style.css");
+                    string paginaRegresar = File.ReadAllText("assets/regresar.html");
 
                     if (context.Request.Url != null)
                     {
-                        if(context.Request.Url.LocalPath == "/vms/")
+                        if (context.Request.Url.LocalPath == "/vms/")
                         {
-                            context.Response.ContentLength64 = buffer.Length;
-                            context.Response.OutputStream.Write(buffer,0,buffer.Length);
-
-                            context.Response.StatusCode = (int)HttpStatusCode.OK;
-                            context.Response.Close();
+                            EnviarRespuesta(context, indexHtml, estilos);
                         }
 
-                        else if(context.Request.HttpMethod == "POST" && context.Request.Url.LocalPath == "/vms/crear")
+                        else if (context.Request.HttpMethod == "POST" && context.Request.Url.LocalPath == "/vms/crear")
                         {
-                            byte[] bufferdatos = new byte[context.Request.ContentLength64];
-                            context.Request.InputStream.Read(bufferdatos, 0, bufferdatos.Length);
-                            string datos = Encoding.UTF8.GetString(bufferdatos);
+                            VMS vms = new();
 
-                            context.Response.ContentLength64 = buffer2.Length;
-                            context.Response.OutputStream.Write(buffer2, 0, buffer2.Length);
-
-                            var diccionario = HttpUtility.ParseQueryString(datos);
-
-                            VMS vms = new()
-                            {
-                                Mensaje = diccionario["mensaje"] ?? ""
-                            };
+                            RecibirVMS(context,ref vms);
 
                             Application.Current.Dispatcher.Invoke(() =>
                             {
                                 VMSRecibido?.Invoke(this, vms);
                             });
 
-                            context.Response.StatusCode = (int)HttpStatusCode.OK;
-                            context.Response.Close();
+                            EnviarRespuesta(context, paginaRegresar, estilos);
                         }
                         else
                         {
                             context.Response.StatusCode = 400;
-                            context.Response.Close();   
+                            context.Response.Close();
                         }
                     }
 
@@ -89,6 +73,30 @@ namespace ProyectoClienteServidorVMS.Services
                 }
             }
         }
+
+
+
+        public void EnviarRespuesta(HttpListenerContext context, string contenido, string estilos)
+        {
+            contenido = contenido.Replace("</head>", $"<style>{estilos}</style></head>");
+            byte[] buffer = Encoding.UTF8.GetBytes(contenido);
+            context.Response.ContentLength64 = buffer.Length;
+            context.Response.OutputStream.Write(buffer, 0, buffer.Length);
+            context.Response.StatusCode = (int)HttpStatusCode.OK;
+            context.Response.Close();
+        }
+
+        public void RecibirVMS(HttpListenerContext context,ref VMS vms)
+        {
+            byte[] bufferdatos = new byte[context.Request.ContentLength64];
+            context.Request.InputStream.Read(bufferdatos, 0, bufferdatos.Length);
+            string datos = Encoding.UTF8.GetString(bufferdatos);
+
+            var diccionario = HttpUtility.ParseQueryString(datos);
+
+            vms.Mensaje = diccionario["mensaje"] ?? "";
+        }
+
 
     }
 }

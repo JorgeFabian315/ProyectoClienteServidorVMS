@@ -58,6 +58,7 @@ namespace ProyectoClienteServidorVMS.ViewModels
             if(vmsp != null)
             {
                 ListaVMS.Remove(vmsp);
+                Vms = ListaVMS.FirstOrDefault() ?? new();
                 GuardarArchivo();
             }
         }
