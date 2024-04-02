@@ -68,8 +68,6 @@ namespace ProyectoClienteServidorVMS.Services
                             context.Response.Close();
                         }
                     }
-
-
                 }
             }
         }

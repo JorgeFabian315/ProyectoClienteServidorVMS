@@ -9,57 +9,123 @@
         mc:Ignorable="d"
         Title="MainView"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
         Height="600"
-        Width="1200">
+        Width="1000">
     <Window.DataContext>
         <vm:VMSViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="TextBlock"
+               x:Key="TipoLetra">
+            <Setter Property="FontFamily"
+                    Value="../Assets/#Electronic Highway Sign" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="FontSize"
+                    Value="60" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".2*" />
-            <ColumnDefinition Width=".8*" />
+            <ColumnDefinition Width=".3*" />
+            <ColumnDefinition Width=".7*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="20">
-            <TextBlock Text="VMS Recibidos:"
-                       FontSize="20" />
-            <ListBox ItemsSource="{Binding ListaVMS}"
-                     SelectedIndex="{Binding Indicevms}"
-                     SelectedItem="{Binding Vms}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <TextBlock Text="{Binding Mensaje}"
-                                       FontSize="16" />
-                            <Button Style="{x:Null}" 
-                                    Background="Transparent"
-                                    BorderThickness="0"
-                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.EliminarCommand}"
-                                    CommandParameter="{Binding .}"
-                                    Cursor="Hand"
-                                    Margin="20,0,0,0">
-                                <Button.ToolTip>
-                                    <ToolTip>
-                                        <TextBlock Text="{Binding Mensaje, StringFormat='Eliminar: {0}'}" />
-                                    </ToolTip>
-                                </Button.ToolTip>
-                                <materialDesign:PackIcon 
-                                    Width="25"
-                                    Height="25"
-                                    Foreground="Red"
-                                    Kind="Delete" />
-                            </Button>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
-        <Border Background="#2B2E39"
+        <Border Grid.Column="1"
+                Background="LightGreen" />
+        <!--#REGION POSTE DEL VMS-->
+        <Border Width="70"
+                Grid.Column="1"
+                Background="#797B70"
+                BorderBrush="#121212"
+                BorderThickness="3,3,3,0"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Height="400" />
+        <!--#ENDREGION POSTE DEL VMS-->
+        
+        <!--#REGION PANTALLA VMS-->
+        <Border Width="600"
+                Height="350"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,0,0,40"
+                Background="#E5C93D"
+                BorderBrush="#121212"
+                BorderThickness="2"
+                Padding="10"
                 Grid.Column="1">
-            <TextBlock Text="{Binding Vms.Mensaje}"
-                       FontSize="50"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Foreground="Orange" />
+            <Border Background="#2C2E39"
+                    BorderBrush="#121212"
+                    BorderThickness="10">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="20,30">
+                <Grid Margin="0,0,0,15">
+                    <TextBlock Text="ROADWORKS HERE"
+                               Style="{StaticResource TipoLetra}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="12"
+                                              ShadowDepth="0"
+                                              Color="#EB229A"
+                                              Direction="0" />
+                        </TextBlock.Effect></TextBlock>
+                    <TextBlock Text="ROADWORKS HERE"
+                               Foreground="White"
+                               Style="{StaticResource TipoLetra}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="12"
+                                              ShadowDepth="0"
+                                              Color="#EB229A"
+                                              Direction="0" />
+                        </TextBlock.Effect></TextBlock>
+                </Grid>
+                <Grid Margin="0,0,0,15">
+                    <TextBlock Text="ROADWORKS HERE"
+                               Style="{StaticResource TipoLetra}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="15"
+                                              ShadowDepth="0"
+                                              Color="#50C5E8"
+                                              Direction="0" />
+                        </TextBlock.Effect></TextBlock>
+                    <TextBlock Text="ROADWORKS HERE"
+                               Foreground="White"
+                               Style="{StaticResource TipoLetra}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="15"
+                                              ShadowDepth="0"
+                                              Color="#50C5E8"
+                                              Direction="0" />
+                        </TextBlock.Effect></TextBlock>
+                </Grid>
+                <Grid Margin="0,0,0,15">
+                    <TextBlock Text="ROADWORKS HERE"
+                               Style="{StaticResource TipoLetra}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="15"
+                                              ShadowDepth="0"
+                                                  Color="#46C700"
+                                              Direction="0" />
+                        </TextBlock.Effect></TextBlock>
+                    <TextBlock Text="ROADWORKS HERE"
+                               Foreground="White"
+                               Style="{StaticResource TipoLetra}">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="15"
+                                              ShadowDepth="0"
+                                                  Color="#46C700"
+                                              Direction="0" />
+                        </TextBlock.Effect></TextBlock>
+                </Grid>
+            </StackPanel>
+            </Border>
         </Border>
+        <!--#ENDREGION PANTALLA VMS-->
+        
+        
+        
     </Grid>
 </Window>

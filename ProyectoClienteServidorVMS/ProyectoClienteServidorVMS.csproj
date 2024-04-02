@@ -14,6 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\FVMS.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Assets\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
