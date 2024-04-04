@@ -68,7 +68,7 @@
                         VerticalAlignment="Center"
                         Margin="20,30">
                 <Grid Margin="0,0,0,15">
-                    <TextBlock Text="ROADWORKS HERE"
+                    <TextBlock Text="Linea 1"
                                Style="{StaticResource TipoLetra}">
                         <TextBlock.Effect>
                             <DropShadowEffect BlurRadius="12"
@@ -76,7 +76,7 @@
                                               Color="#EB229A"
                                               Direction="0" />
                         </TextBlock.Effect></TextBlock>
-                    <TextBlock Text="ROADWORKS HERE"
+                    <TextBlock Text="Linea 1"
                                Foreground="White"
                                Style="{StaticResource TipoLetra}">
                         <TextBlock.Effect>
@@ -87,7 +87,7 @@
                         </TextBlock.Effect></TextBlock>
                 </Grid>
                 <Grid Margin="0,0,0,15">
-                    <TextBlock Text="ROADWORKS HERE"
+                    <TextBlock Text="Linea 2"
                                Style="{StaticResource TipoLetra}">
                         <TextBlock.Effect>
                             <DropShadowEffect BlurRadius="15"
@@ -95,7 +95,7 @@
                                               Color="#50C5E8"
                                               Direction="0" />
                         </TextBlock.Effect></TextBlock>
-                    <TextBlock Text="ROADWORKS HERE"
+                    <TextBlock Text="Linea 2"
                                Foreground="White"
                                Style="{StaticResource TipoLetra}">
                         <TextBlock.Effect>
@@ -106,7 +106,7 @@
                         </TextBlock.Effect></TextBlock>
                 </Grid>
                 <Grid Margin="0,0,0,15">
-                    <TextBlock Text="ROADWORKS HERE"
+                    <TextBlock Text="Linea 3"
                                Style="{StaticResource TipoLetra}">
                         <TextBlock.Effect>
                             <DropShadowEffect BlurRadius="15"
@@ -114,7 +114,7 @@
                                                   Color="#46C700"
                                               Direction="0" />
                         </TextBlock.Effect></TextBlock>
-                    <TextBlock Text="ROADWORKS HERE"
+                    <TextBlock Text="Linea 3"
                                Foreground="White"
                                Style="{StaticResource TipoLetra}">
                         <TextBlock.Effect>
