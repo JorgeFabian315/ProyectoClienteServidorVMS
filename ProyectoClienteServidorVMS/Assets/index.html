@@ -4,17 +4,414 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9c74a791f2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>VMS</title>
 </head>
 
-<body>
+<!--<body>
     <h1>Mensaje VMS</h1>
     <form method="post" action="./crear">
         <label>Mensaje:</label> <br />
         <input type="text" name="mensaje" required/><br />
         <input type="submit" value="Enviar" />
     </form>
+</body>-->
+
+<body>
+
+    <form method="post" action="./crear">
+
+        <h1>Envia un mensaje</h1>
+
+        <div>
+            <h2>Linea 1</h2>
+            <input placeholder="Escribe tu mensaje" type="text" name="mensaje" required />
+            <div class="allmenu">
+                <input type="checkbox" class="chkColor" id="expander-1">
+                <label for="expander-1" tooltip="Agrega un color">
+                    <i class="fa-solid fa-palette"></i>
+                </label>
+
+                <label class="hex" id="colorLabel1">#FFFFFF</label>
+
+                <label>
+                    <input type="checkbox" class="Mysc">
+                    <i class="fa-solid fa-bold"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="Subr">
+                    <i class="fa-solid fa-italic"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="Tach">
+                    <i class="fa-solid fa-underline"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="MvmIzq">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </label>
+                <label>
+                    <input type="checkbox" class="Blink">
+                    <i class="fa-solid fa-angles-left"></i>
+                </label>
+
+                <ul id="colorpicker1">
+                    <li>
+                        <label class="r">
+                            <input type="radio" name="color1" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="p">
+                            <input type="radio" name="color1" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="m">
+                            <input type="radio" name="color1" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="c">
+                            <input type="radio" name="color1" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="g">
+                            <input type="radio" name="color1" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="a">
+                            <input type="radio" name="color1" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="na">
+                            <input type="radio" name="color1" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="b">
+                            <input type="radio" name="color1" class="Mysc">
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <h2>Linea 2</h2>
+            <input placeholder="Escribe tu mensaje" type="text" name="mensaje" />
+            <div class="allmenu">
+                <input type="checkbox" class="chkColor" id="expander-2">
+                <label for="expander-2">
+                    <i class="fa-solid fa-palette"></i>
+                </label>
+
+                <label class="hex" id="colorLabel2">#FFFFFF</label>
+
+                <label>
+                    <input type="checkbox" class="Mysc">
+                    <i class="fa-solid fa-bold"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="Subr">
+                    <i class="fa-solid fa-italic"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="Tach">
+                    <i class="fa-solid fa-underline"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="MvmIzq">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </label>
+                <label>
+                    <input type="checkbox" class="Blink">
+                    <i class="fa-solid fa-angles-left"></i>
+                </label>
+
+                <ul id="colorpicker2">
+                    <li>
+                        <label class="r">
+                            <input type="radio" name="color2" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="p">
+                            <input type="radio" name="color2" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="m">
+                            <input type="radio" name="color2" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="c">
+                            <input type="radio" name="color2" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="g">
+                            <input type="radio" name="color2" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="a">
+                            <input type="radio" name="color2" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="na">
+                            <input type="radio" name="color2" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="b">
+                            <input type="radio" name="color2" class="Mysc">
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <h2>Linea 3</h2>
+            <input placeholder="Escribe tu mensaje" type="text" name="mensaje" />
+            <div class="allmenu">
+                <input type="checkbox" class="chkColor" id="expander-3">
+                <label for="expander-3">
+                    <i class="fa-solid fa-palette"></i>
+                </label>
+
+                <label class="hex" id="colorLabel3">#FFFFFF</label>
+
+                <label>
+                    <input type="checkbox" class="Mysc">
+                    <i class="fa-solid fa-bold"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="Subr">
+                    <i class="fa-solid fa-italic"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="Tach">
+                    <i class="fa-solid fa-underline"></i>
+                </label>
+
+                <label>
+                    <input type="checkbox" class="MvmIzq">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </label>
+                <label>
+                    <input type="checkbox" class="Blink">
+                    <i class="fa-solid fa-angles-left"></i>
+                </label>
+
+                <ul id="colorpicker3">
+                    <li>
+                        <label class="r">
+                            <input type="radio" name="color3" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="p">
+                            <input type="radio" name="color3" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="m">
+                            <input type="radio" name="color3" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="c">
+                            <input type="radio" name="color3" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="g">
+                            <input type="radio" name="color3" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="a">
+                            <input type="radio" name="color3" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="na">
+                            <input type="radio" name="color3" class="Mysc">
+                        </label>
+                    </li>
+                    <li>
+                        <label class="b">
+                            <input type="radio" name="color3" class="Mysc">
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+
+        <input type="submit" value="Enviar" />
+
+    </form>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var labels = document.querySelectorAll("label");
+
+            labels.forEach(function (label) {
+
+                label.addEventListener("click", function () {
+
+                    var checkbox = label.querySelector("input[type='checkbox']");
+
+                    if (checkbox.checked) {
+                        label.classList.add("selected");
+                    } else {
+                        label.classList.remove("selected");
+                    }
+                });
+            });
+        });
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        function cambiarColorLabel1() {
+            var colorpicker = document.getElementById("colorpicker1");
+            var colorLabel = document.getElementById("colorLabel1");
+
+            var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
+
+            var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
+
+            var hexadecimal = rgbToHex(colorFondo);
+
+            colorLabel.textContent = hexadecimal;
+
+            colorLabel.style.color = hexadecimal;
+        }
+
+        function rgbToHex(color) {
+            var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+            function componentToHex(c) {
+                var hex = parseInt(c).toString(16);
+                return hex.length == 1 ? "0" + hex : hex;
+            }
+
+            var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
+            return hexadecimal;
+        }
+
+        var radios = document.querySelectorAll("#colorpicker1 input[type='radio']");
+        radios.forEach(function (radio) {
+            radio.addEventListener("click", function () {
+                cambiarColorLabel1();
+            });
+        });
+
+        cambiarColorLabel1();
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        function cambiarColorLabel2() {
+            var colorpicker = document.getElementById("colorpicker2");
+            var colorLabel = document.getElementById("colorLabel2");
+
+            var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
+
+            var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
+
+            var hexadecimal = rgbToHex(colorFondo);
+
+            colorLabel.textContent = hexadecimal;
+
+            colorLabel.style.color = hexadecimal;
+        }
+
+        function rgbToHex(color) {
+            var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+            function componentToHex(c) {
+                var hex = parseInt(c).toString(16);
+                return hex.length == 1 ? "0" + hex : hex;
+            }
+
+            var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
+            return hexadecimal;
+        }
+
+        var radios = document.querySelectorAll("#colorpicker2 input[type='radio']");
+        radios.forEach(function (radio) {
+            radio.addEventListener("click", function () {
+                cambiarColorLabel2();
+            });
+        });
+
+        cambiarColorLabel2();
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        function cambiarColorLabel3() {
+            var colorpicker = document.getElementById("colorpicker3");
+            var colorLabel = document.getElementById("colorLabel3");
+
+            var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
+
+            var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
+
+            var hexadecimal = rgbToHex(colorFondo);
+
+            colorLabel.textContent = hexadecimal;
+
+            colorLabel.style.color = hexadecimal;
+        }
+
+        function rgbToHex(color) {
+            var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+            function componentToHex(c) {
+                var hex = parseInt(c).toString(16);
+                return hex.length == 1 ? "0" + hex : hex;
+            }
+
+            var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
+            return hexadecimal;
+        }
+
+        var radios = document.querySelectorAll("#colorpicker3 input[type='radio']");
+        radios.forEach(function (radio) {
+            radio.addEventListener("click", function () {
+                cambiarColorLabel3();
+            });
+        });
+
+        cambiarColorLabel3();
+    });
+
+    </script>
+
 </body>
 
 </html>
