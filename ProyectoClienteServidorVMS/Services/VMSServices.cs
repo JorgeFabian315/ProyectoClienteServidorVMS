@@ -92,7 +92,12 @@ namespace ProyectoClienteServidorVMS.Services
 
             var diccionario = HttpUtility.ParseQueryString(datos);
 
-            vms.Mensaje = diccionario["mensaje"] ?? "";
+            vms.Linea1 = diccionario["linea1"] ?? "";
+            vms.Linea2 = diccionario["linea2"] ?? "";
+            vms.Linea3 = diccionario["linea3"] ?? "";
+            vms.ColorLinea1 = diccionario["colorlinea1"] ?? "";
+            vms.ColorLinea2 = diccionario["colorlinea2"] ?? "";
+            vms.ColorLinea3 = diccionario["colorlinea3"] ?? "";
         }
 
 

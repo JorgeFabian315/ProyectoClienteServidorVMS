@@ -26,7 +26,7 @@
 
         <div>
             <h2>Linea 1</h2>
-            <input placeholder="Escribe tu mensaje" type="text" name="mensaje" required />
+            <input placeholder="Escribe tu mensaje" type="text" name="linea1" required />
             <div class="allmenu">
                 <input type="checkbox" class="chkColor" id="expander-1">
                 <label for="expander-1" tooltip="Agrega un color">
@@ -34,6 +34,7 @@
                 </label>
 
                 <label class="hex" id="colorLabel1">#FFFFFF</label>
+                <input type="hidden" id="colorInput1" name="colorlinea1" />
 
                 <label>
                     <input type="checkbox" class="Mysc">
@@ -108,7 +109,7 @@
 
         <div>
             <h2>Linea 2</h2>
-            <input placeholder="Escribe tu mensaje" type="text" name="mensaje" />
+            <input placeholder="Escribe tu mensaje" type="text" name="linea2" required/>
             <div class="allmenu">
                 <input type="checkbox" class="chkColor" id="expander-2">
                 <label for="expander-2">
@@ -116,6 +117,8 @@
                 </label>
 
                 <label class="hex" id="colorLabel2">#FFFFFF</label>
+                <input type="hidden" id="colorInput2" name="colorlinea2" />
+
 
                 <label>
                     <input type="checkbox" class="Mysc">
@@ -190,14 +193,16 @@
 
         <div>
             <h2>Linea 3</h2>
-            <input placeholder="Escribe tu mensaje" type="text" name="mensaje" />
+            <input placeholder="Escribe tu mensaje" type="text" name="linea3" />
             <div class="allmenu">
                 <input type="checkbox" class="chkColor" id="expander-3">
                 <label for="expander-3">
                     <i class="fa-solid fa-palette"></i>
                 </label>
 
-                <label class="hex" id="colorLabel3">#FFFFFF</label>
+                <label class="hex" id="colorLabel3" >#FFFFFF</label>
+                <input type="hidden" id="colorInput3" name="colorlinea3"/>
+
 
                 <label>
                     <input type="checkbox" class="Mysc">
@@ -300,6 +305,8 @@
         function cambiarColorLabel1() {
             var colorpicker = document.getElementById("colorpicker1");
             var colorLabel = document.getElementById("colorLabel1");
+            var colorInput1 = document.getElementById("colorInput1");
+
 
             var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
 
@@ -308,6 +315,8 @@
             var hexadecimal = rgbToHex(colorFondo);
 
             colorLabel.textContent = hexadecimal;
+
+            colorInput1.value = hexadecimal;
 
             colorLabel.style.color = hexadecimal;
         }
@@ -338,7 +347,7 @@
         function cambiarColorLabel2() {
             var colorpicker = document.getElementById("colorpicker2");
             var colorLabel = document.getElementById("colorLabel2");
-
+            var colorInput2 = document.getElementById("colorInput2");
             var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
 
             var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
@@ -346,6 +355,8 @@
             var hexadecimal = rgbToHex(colorFondo);
 
             colorLabel.textContent = hexadecimal;
+
+            colorInput2.value = hexadecimal;
 
             colorLabel.style.color = hexadecimal;
         }
@@ -376,6 +387,7 @@
         function cambiarColorLabel3() {
             var colorpicker = document.getElementById("colorpicker3");
             var colorLabel = document.getElementById("colorLabel3");
+            var colorInput3 = document.getElementById("colorInput3");
 
             var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
 
@@ -384,7 +396,7 @@
             var hexadecimal = rgbToHex(colorFondo);
 
             colorLabel.textContent = hexadecimal;
-
+            colorInput3.value = hexadecimal;
             colorLabel.style.color = hexadecimal;
         }
 

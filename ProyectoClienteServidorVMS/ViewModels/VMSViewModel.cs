@@ -15,7 +15,7 @@ using System.Windows.Media;
 
 namespace ProyectoClienteServidorVMS.ViewModels
 {
-    public partial class VMSViewModel: ObservableObject
+    public partial class VMSViewModel : ObservableObject
     {
         private VMSServices _server = new();
         public ObservableCollection<VMS> ListaVMS { get; set; } = new();
@@ -36,18 +36,11 @@ namespace ProyectoClienteServidorVMS.ViewModels
 
         private void Server_VMSRecibido(object? sender, VMS e)
         {
-           if(e != null)
+            if (e != null)
             {
-                if (!string.IsNullOrWhiteSpace(e.Mensaje))
-                {
-                    ListaVMS.Add(e);
-                    Indicevms = ListaVMS.IndexOf(e);
-                    GuardarArchivo();
-                }
-                else
-                {
-                    MessageBox.Show("Se intento enviar un mensaje vacío"); // no es correcto hacer esto, es temporal
-                }
+                ListaVMS.Add(e);
+                Indicevms = ListaVMS.IndexOf(e);
+                GuardarArchivo();
             }
         }
 
@@ -55,7 +48,7 @@ namespace ProyectoClienteServidorVMS.ViewModels
         [RelayCommand]
         private void Eliminar(VMS vmsp)
         {
-            if(vmsp != null)
+            if (vmsp != null)
             {
                 ListaVMS.Remove(vmsp);
                 Vms = ListaVMS.FirstOrDefault() ?? new();
