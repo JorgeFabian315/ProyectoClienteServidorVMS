@@ -4,18 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/9c74a791f2.js" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-        body{
-            background-color:cornflowerblue;
+        * {
+            margin: 0;
         }
+
+        html,
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            display: flex;
+        }
+
+        .msj {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            max-width: 500px;
+            min-width: 260px;
+            margin: auto;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+            .msj a {
+                height: 50px;
+                width: 50%;
+                border-radius: 10px;
+                background-color: #6495ED;
+                color: white;
+                font-size: 1.25em;
+                font-weight: 600;
+                border: none;
+                margin: 20px auto;
+                text-decoration: none;
+                line-height: 50px;
+            }
+
+            .msj i {
+                font-size: 8em;
+                margin: 20px auto;
+                color: cornflowerblue;
+                opacity: 0.6;
+            }
     </style>
 </head>
 
 <body>
-    <h1>Se envió correctamente su mensaje</h1>
-    <a href="/vms/">Regresar</a>
+    <div class="msj">
+        <i class="fa-regular fa-circle-check"></i>
+        <h1>Se envió correctamente su mensaje</h1>
+        <a href="/vms/">Regresar</a>
+    </div>
 </body>
 
 </html>
