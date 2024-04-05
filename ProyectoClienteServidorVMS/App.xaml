@@ -6,6 +6,17 @@
              StartupUri="/Views/MainView.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <Style TargetType="TextBlock"
+                   x:Key="TipoLetra">
+                <Setter Property="FontFamily"
+                        Value="./Assets/#Electronic Highway Sign" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="FontSize"
+                        Value="60" />
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light"
                                              PrimaryColor="Grey"

@@ -56,6 +56,8 @@ namespace ProyectoClienteServidorVMS.ViewModels
             }
         }
 
+        
+
 
         private string _nombreJson = "vms.json";
         public void GuardarArchivo()
