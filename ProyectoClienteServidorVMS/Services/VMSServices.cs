@@ -33,9 +33,10 @@ namespace ProyectoClienteServidorVMS.Services
 
         private void Escuchar()
         {
-            while (true)
+            while (server.IsListening)
             {
                 HttpListenerContext? context = server.GetContext();
+               
                 if (context != null)
                 {
                     string indexHtml = File.ReadAllText("assets/index.html");
@@ -53,7 +54,7 @@ namespace ProyectoClienteServidorVMS.Services
                         {
                             VMS vms = new();
 
-                            RecibirVMS(context,ref vms);
+                            RecibirVMS(context, ref vms);
 
                             Application.Current.Dispatcher.Invoke(() =>
                             {
@@ -72,8 +73,6 @@ namespace ProyectoClienteServidorVMS.Services
             }
         }
 
-
-
         public void EnviarRespuesta(HttpListenerContext context, string contenido, string estilos)
         {
             contenido = contenido.Replace("</head>", $"<style>{estilos}</style></head>");
@@ -84,7 +83,7 @@ namespace ProyectoClienteServidorVMS.Services
             context.Response.Close();
         }
 
-        public void RecibirVMS(HttpListenerContext context,ref VMS vms)
+        public void RecibirVMS(HttpListenerContext context, ref VMS vms)
         {
             byte[] bufferdatos = new byte[context.Request.ContentLength64];
             context.Request.InputStream.Read(bufferdatos, 0, bufferdatos.Length);
@@ -100,6 +99,13 @@ namespace ProyectoClienteServidorVMS.Services
             vms.ColorLinea3 = diccionario["colorlinea3"] ?? "";
         }
 
+        public void Apagar()
+        {
+            if (server.IsListening)
+            {
+                server.Close();
+            }
+        }
 
     }
 }

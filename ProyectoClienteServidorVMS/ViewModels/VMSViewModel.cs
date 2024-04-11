@@ -56,7 +56,14 @@ namespace ProyectoClienteServidorVMS.ViewModels
             }
         }
 
-        
+
+
+        [RelayCommand]
+        private void Apagar()
+        {
+            _server.Apagar();
+            Vms = null;
+        }
 
 
         private string _nombreJson = "vms.json";
@@ -78,6 +85,7 @@ namespace ProyectoClienteServidorVMS.ViewModels
                     ListaVMS = new ObservableCollection<VMS>();
             }
         }
+
 
 
     }
