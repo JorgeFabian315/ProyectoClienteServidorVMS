@@ -15,7 +15,14 @@
                 <Setter Property="VerticalAlignment"
                         Value="Center" />
                 <Setter Property="FontSize"
-                        Value="60" />
+                        Value="90" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="10"
+                                          ShadowDepth="0"
+                                          Direction="0" />
+                    </Setter.Value>
+                </Setter>
             </Style>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light"

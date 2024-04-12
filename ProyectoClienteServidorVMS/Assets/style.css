@@ -230,6 +230,7 @@ label {
 }
 
 .hex {
+    text-transform: uppercase;
     width: 110px;
     padding: 10px;
     flex: 1;
