@@ -98,9 +98,9 @@ namespace ProyectoClienteServidorVMS.Services
             vms.Linea1 = diccionario["linea1"] ?? "";
             vms.Linea2 = diccionario["linea2"] ?? "";
             vms.Linea3 = diccionario["linea3"] ?? "";
-            vms.ColorLinea1 = diccionario["colorlinea1"] ?? "";
-            vms.ColorLinea2 = diccionario["colorlinea2"] ?? "";
-            vms.ColorLinea3 = diccionario["colorlinea3"] ?? "";
+            vms.ColorLinea1 = diccionario["colorlinea1"] == "" ? "#FFF" : diccionario["colorlinea1"] ?? "";
+            vms.ColorLinea2 = diccionario["colorlinea2"] == "" ? "#FFF" : diccionario["colorlinea2"] ?? "";
+            vms.ColorLinea3 = diccionario["colorlinea3"] == "" ? "#FFF" : diccionario["colorlinea3"] ?? "";
             vms.ImagenLinea1 = diccionario["imagenlinea1"] ?? "";
             vms.ImagenLinea2 = diccionario["imagenlinea2"] ?? "";
             vms.ImagenLinea3 = diccionario["imagenlinea3"] ?? "";

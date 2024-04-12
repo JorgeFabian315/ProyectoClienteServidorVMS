@@ -15,35 +15,49 @@
     <Window.DataContext>
         <viewmodels:VMSViewModel x:Name="vmvms" />
     </Window.DataContext>
-
     <Window.Resources>
         <hp:ImagenesConvert x:Key="convertidor" />
     </Window.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
-
-        
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".9*" />
+        </Grid.RowDefinitions>
+        <!--#REGION IP-->
+        <Border Background="#2C2E39">
+            <TextBlock Text="{Binding IP, StringFormat='IP Addres: {0}'}"
+                       Foreground="White"
+                       FontSize="30"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="20,0,0,0"
+                       DockPanel.Dock="Bottom" />
+        </Border>
+        <Border Background="#2C2E39"
+                Grid.Column="1">
+            <TextBlock Text="Mensajes recibidos"
+                       Foreground="White"
+                       FontSize="30"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="15,0,0,0"
+                       DockPanel.Dock="Bottom" />
+        </Border>
+        <!--#ENDREGION IP-->
         <!--#REGION LISTBOX COLUMNA 0 DEL GRID-->
         <DockPanel Grid.Column="1"
+                   Grid.Row="1"
                    Background="#2C2E39">
-            <!--#REGION IP-->
-            <TextBlock Text="{Binding IP}"
-                   Foreground="Green"
-                   FontSize="30"
-                   DockPanel.Dock="Bottom"/>
-            <!--#ENDREGION IP-->
             <ListBox Width="300"
                      SelectedItem="{Binding Vms}"
                      SelectedIndex="{Binding Indicevms}"
                      ItemsSource="{Binding ListaVMS}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-
                         <DockPanel Width="280">
                             <Button DockPanel.Dock="Right"
                                     Background="#EE4C10"
@@ -60,14 +74,15 @@
                                                          Width="20"
                                                          Height="20" />
                             </Button>
-
                             <StackPanel Orientation="Vertical">
                                 <StackPanel.Resources>
                                     <Style TargetType="TextBlock">
-                                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        <Setter Property="HorizontalAlignment"
+                                                Value="Left" />
                                     </Style>
                                     <Style TargetType="StackPanel">
-                                        <Setter Property="Orientation" Value="Horizontal"/>
+                                        <Setter Property="Orientation"
+                                                Value="Horizontal" />
                                     </Style>
                                 </StackPanel.Resources>
                                 <StackPanel>
@@ -98,19 +113,16 @@
                                                FontSize="15" />
                                 </StackPanel>
                             </StackPanel>
-
                         </DockPanel>
-
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </DockPanel>
-
         <!--#ENDREGION LISTBOX COLUMNA 0 DEL GRID-->
-
         <!--#REGION PANTALLA VMS-->
         <Border Grid.Column="0"
                 Padding="20"
+                Grid.Row="1"
                 Background="Black">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -118,75 +130,45 @@
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-
                 <!--#REGION LINEA 1-->
                 <TextBlock Text="{Binding Vms.Linea1}"
                            Name="txtLinea1"
                            Foreground="{Binding Vms.ColorLinea1}"
                            Style="{StaticResource TipoLetra}">
-                    <TextBlock.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard>
-                                <Storyboard RepeatBehavior="Forever">
-                                    <DoubleAnimation Storyboard.TargetName="txtLinea1"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0.5"
-                                                     From="1"
-                                                     Duration="0:0:5" />
-                                    <DoubleAnimation Storyboard.TargetName="txtLinea1"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     To="0.5"
-                                                     From="0"
-                                                     BeginTime="0:0:5"
-                                                     Duration="0:0:2" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </TextBlock.Triggers>
                     <TextBlock.Effect>
                         <DropShadowEffect BlurRadius="10"
                                           ShadowDepth="0"
                                           Color="{Binding Vms.ColorLinea1}"
                                           Direction="0" />
-                    </TextBlock.Effect>
-                </TextBlock>
+                    </TextBlock.Effect></TextBlock>
                 <TextBlock Text="{Binding Vms.Linea1}"
                            Foreground="White"
                            Style="{StaticResource TipoLetra}">
                     <TextBlock.Effect>
-                        <!--<DropShadowEffect BlurRadius="10"
-                                          ShadowDepth="0"
-                                          Color="{Binding Vms.ColorLinea1}"
-                                          Direction="0" />-->
                         <DropShadowEffect BlurRadius="10"
                                           ShadowDepth="0"
-                                          Color="White"
+                                          Color="{Binding Vms.ColorLinea1}"
                                           Direction="0" />
-                    </TextBlock.Effect>
-                </TextBlock>
-
+                    </TextBlock.Effect></TextBlock>
                 <Image Source="{Binding Vms.ImagenLinea1, Converter={StaticResource convertidor}}"
-                       Grid.Column="1"        
-                       MaxWidth="80"
-                       Margin="0,5">
+                       Grid.Column="1"
+                       MaxWidth="100"
+                       Margin="0,5,10,5">
                     <Image.Effect>
                         <BlurEffect Radius="10"
-                                    KernelType="Box"/>
+                                    KernelType="Box" />
                     </Image.Effect>
                 </Image>
                 <Image Source="{Binding Vms.ImagenLinea1, Converter={StaticResource convertidor}}"
-                       Grid.Column="1"        
-                       MaxWidth="80"
-                       Margin="0,5" />
-
+                       Grid.Column="1"
+                       MaxWidth="100"
+                       Margin="0,5,10,5" />
                 <!--#ENDREGION LINEA 1-->
-
-                <!--#ENDREGION LINEA 2-->
-
+                <!--#REGION LINEA 2-->
                 <TextBlock Grid.Row="1"
                            Text="{Binding Vms.Linea2}"
                            Style="{StaticResource TipoLetra}">
@@ -206,26 +188,23 @@
                                           Color="{Binding Vms.ColorLinea2}"
                                           Direction="0" />
                     </TextBlock.Effect></TextBlock>
-
                 <Image Grid.Row="1"
                        Grid.Column="1"
                        Source="{Binding Vms.ImagenLinea2, Converter={StaticResource convertidor}}"
-                       MaxWidth="80"
-                       Margin="0,5">
+                       MaxWidth="100"
+                       Margin="0,5,10,5">
                     <Image.Effect>
                         <BlurEffect Radius="10"
-                                    KernelType="Box"/>
+                                    KernelType="Box" />
                     </Image.Effect>
                 </Image>
                 <Image Grid.Row="1"
                        Grid.Column="1"
                        Source="{Binding Vms.ImagenLinea2, Converter={StaticResource convertidor}}"
-                       MaxWidth="80"
-                       Margin="0,5" />
-                <!--#REGION LINEA 2-->
-
+                       MaxWidth="100"
+                       Margin="0,5,0,5" />
+                <!--#ENDREGION LINEA 2-->
                 <!--#REGION LINEA 3-->
-
                 <TextBlock Grid.Row="2"
                            Text="{Binding Vms.Linea3}"
                            Style="{StaticResource TipoLetra}">
@@ -234,47 +213,40 @@
                                           ShadowDepth="0"
                                           Color="{Binding Vms.ColorLinea3}"
                                           Direction="0" />
-                    </TextBlock.Effect>
-                </TextBlock>
+                    </TextBlock.Effect></TextBlock>
                 <TextBlock Grid.Row="2"
                            Text="{Binding Vms.Linea3}"
-                                       Foreground="White"
-                                       Style="{StaticResource TipoLetra}">
+                           Foreground="White"
+                           Style="{StaticResource TipoLetra}">
                     <TextBlock.Effect>
                         <DropShadowEffect BlurRadius="10"
                                           ShadowDepth="0"
                                           Color="{Binding Vms.ColorLinea3}"
                                           Direction="0" />
-                    </TextBlock.Effect>
-                </TextBlock>
-
-                
+                    </TextBlock.Effect></TextBlock>
                 <Image Grid.Row="2"
                        Grid.Column="1"
                        Source="{Binding Vms.ImagenLinea3, Converter={StaticResource convertidor}}"
-                       MaxWidth="80"
-                       Margin="0,5">
+                       MaxWidth="100"
+                       Margin="0,5,10,5">
                     <Image.Effect>
                         <BlurEffect Radius="10"
-                                    KernelType="Box"/>
+                                    KernelType="Box" />
                     </Image.Effect>
                 </Image>
                 <Image Grid.Row="2"
                        Grid.Column="1"
                        Source="{Binding Vms.ImagenLinea3, Converter={StaticResource convertidor}}"
-                       MaxWidth="80"
-                       Margin="0,5" />
-                
+                       MaxWidth="100"
+                       Margin="0,5,10,5" />
                 <!--#ENDREGION LINEA 3-->
-
-
             </Grid>
-
         </Border>
-
-        <Rectangle Opacity="0.6">
+        <Rectangle Opacity="0.6"
+                   Grid.Row="1">
             <Rectangle.Fill>
-                <DrawingBrush Viewport="0,0,0.005,0.005" TileMode="Tile">
+                <DrawingBrush Viewport="0,0,0.005,0.005"
+                              TileMode="Tile">
                     <DrawingBrush.Drawing>
                         <DrawingGroup>
                             <GeometryDrawing Brush="Transparent">
@@ -282,53 +254,62 @@
                                     <RectangleGeometry  Rect="0,0,140,130" />
                                 </GeometryDrawing.Geometry>
                             </GeometryDrawing>
-
                             <GeometryDrawing Brush="#40ff0000">
                                 <GeometryDrawing.Geometry>
-                                    <RectangleGeometry RadiusX="30" RadiusY="30" Rect="5,0,40,120"/>
+                                    <RectangleGeometry RadiusX="30"
+                                                       RadiusY="30"
+                                                       Rect="5,0,40,120" />
                                 </GeometryDrawing.Geometry>
                             </GeometryDrawing>
-
                             <GeometryDrawing Brush="#4000ff00">
                                 <GeometryDrawing.Geometry>
-                                    <RectangleGeometry RadiusX="30" RadiusY="30" Rect="50,0,40,120" />
+                                    <RectangleGeometry RadiusX="30"
+                                                       RadiusY="30"
+                                                       Rect="50,0,40,120" />
                                 </GeometryDrawing.Geometry>
                             </GeometryDrawing>
-
                             <GeometryDrawing Brush="#400000ff">
                                 <GeometryDrawing.Geometry>
-                                    <RectangleGeometry RadiusX="30" RadiusY="30" Rect="95,0,40,120" />
+                                    <RectangleGeometry RadiusX="30"
+                                                       RadiusY="30"
+                                                       Rect="95,0,40,120" />
                                 </GeometryDrawing.Geometry>
                             </GeometryDrawing>
-
                         </DrawingGroup>
                     </DrawingBrush.Drawing>
                 </DrawingBrush>
             </Rectangle.Fill>
         </Rectangle>
-
-        <Rectangle>
+        <Rectangle Grid.Row="1">
             <Rectangle.Fill>
                 <LinearGradientBrush>
-                    <GradientStop Color="Transparent" Offset="0" />
-                    <GradientStop Color="#1affffff" Offset="0.38" />
-                    <GradientStop Color="#40ffffff" Offset="0.4" />
-                    <GradientStop Color="#1affffff" Offset="0.4" />
-                    <GradientStop Color="Transparent" Offset="0.5" />
-                    <GradientStop Color="#1affffff" Offset="0.67" />
-                    <GradientStop Color="#40ffffff" Offset="0.67" />
-                    <GradientStop Color="#1affffff" Offset="0.68" />
-                    <GradientStop Color="Transparent" Offset="0.75" />
-                    <GradientStop Color="#26ffffff" Offset="1.0" />
+                    <GradientStop Color="Transparent"
+                                  Offset="0" />
+                    <GradientStop Color="#1affffff"
+                                  Offset="0.38" />
+                    <GradientStop Color="#40ffffff"
+                                  Offset="0.4" />
+                    <GradientStop Color="#1affffff"
+                                  Offset="0.4" />
+                    <GradientStop Color="Transparent"
+                                  Offset="0.5" />
+                    <GradientStop Color="#1affffff"
+                                  Offset="0.67" />
+                    <GradientStop Color="#40ffffff"
+                                  Offset="0.67" />
+                    <GradientStop Color="#1affffff"
+                                  Offset="0.68" />
+                    <GradientStop Color="Transparent"
+                                  Offset="0.75" />
+                    <GradientStop Color="#26ffffff"
+                                  Offset="1.0" />
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-
         <Border BorderBrush="#222"
-                BorderThickness="10"/>
-
+                Grid.Row="1"
+                BorderThickness="10" />
         <!--#ENDREGION PANTALLA VMS-->
-
     </Grid>
 </Window>
 
