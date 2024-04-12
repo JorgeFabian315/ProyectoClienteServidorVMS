@@ -14,5 +14,9 @@ namespace ProyectoClienteServidorVMS.Models
         public string ColorLinea1 { get; set; } = null!;
         public string ColorLinea2 { get; set; } = null!;
         public string ColorLinea3 { get; set; } = null!;
+        public string ImagenLinea1 { get; set; } = string.Empty;
+        public string ImagenLinea2 { get; set; } = string.Empty;
+        public string ImagenLinea3 { get; set; } = string.Empty;
+
     }
 }

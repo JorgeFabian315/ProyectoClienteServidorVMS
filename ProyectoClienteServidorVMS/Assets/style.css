@@ -83,22 +83,22 @@ h2 {
     margin-bottom: 10px;
 }
 
-.uc, .sem, .slo{
+.uc, .sem, .slo {
     background-repeat: no-repeat;
     background-size: auto 30px; /* Ancho automático y alto de 30px */
     background-position: center;
 }
 
-.slo{
-    background-image: url('slow.png');
+.slo {
+    background-image: url('https://i.ibb.co/gjL49kJ/slow.png');
 }
 
-.sem{
-    background-image: url('sem.png');
+.sem {
+    background-image: url('https://i.ibb.co/hdG2PXf/sem.png');
 }
 
-.uc{
-    background-image: url('uc.png');
+.uc {
+    background-image: url('https://i.ibb.co/5WW5RrX/uc.png');
 }
 
 .chkColor {

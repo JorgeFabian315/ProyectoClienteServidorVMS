@@ -9,8 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\sem.png" />
     <None Remove="Assets\senal.png" />
-    <None Remove="Assets\stop.png" />
+    <None Remove="Assets\slow.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +23,13 @@
     <Resource Include="Assets\FVMS.TTF">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\sem.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\senal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\stop.png">
+    <Resource Include="Assets\slow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -36,17 +36,19 @@ namespace ProyectoClienteServidorVMS.Services
             while (server.IsListening)
             {
                 HttpListenerContext? context = server.GetContext();
-               
+
                 if (context != null)
                 {
                     string indexHtml = File.ReadAllText("assets/index.html");
                     string estilos = File.ReadAllText("assets/style.css");
                     string paginaRegresar = File.ReadAllText("assets/regresar.html");
 
+
                     if (context.Request.Url != null)
                     {
                         if (context.Request.Url.LocalPath == "/vms/")
                         {
+                  
                             EnviarRespuesta(context, indexHtml, estilos);
                         }
 
@@ -73,9 +75,11 @@ namespace ProyectoClienteServidorVMS.Services
             }
         }
 
-        public void EnviarRespuesta(HttpListenerContext context, string contenido, string estilos)
+        public void EnviarRespuesta(HttpListenerContext context, string contenido, string? estilos = null)
         {
-            contenido = contenido.Replace("</head>", $"<style>{estilos}</style></head>");
+            if (estilos != null)
+                contenido = contenido.Replace("</head>", $"<style>{estilos}</style></head>");
+
             byte[] buffer = Encoding.UTF8.GetBytes(contenido);
             context.Response.ContentLength64 = buffer.Length;
             context.Response.OutputStream.Write(buffer, 0, buffer.Length);
@@ -97,6 +101,9 @@ namespace ProyectoClienteServidorVMS.Services
             vms.ColorLinea1 = diccionario["colorlinea1"] ?? "";
             vms.ColorLinea2 = diccionario["colorlinea2"] ?? "";
             vms.ColorLinea3 = diccionario["colorlinea3"] ?? "";
+            vms.ImagenLinea1 = diccionario["imagenlinea1"] ?? "";
+            vms.ImagenLinea2 = diccionario["imagenlinea2"] ?? "";
+            vms.ImagenLinea3 = diccionario["imagenlinea3"] ?? "";
         }
 
         public void Apagar()
