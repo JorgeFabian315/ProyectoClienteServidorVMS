@@ -305,6 +305,9 @@
                                   Offset="1.0" />
                 </LinearGradientBrush>
             </Rectangle.Fill>
+            <Rectangle.Effect>
+                <BlurEffect Radius="80" KernelType="Gaussian"/>
+            </Rectangle.Effect>
         </Rectangle>
         <Border BorderBrush="#222"
                 Grid.Row="1"
