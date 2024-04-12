@@ -9,15 +9,6 @@
     <title>VMS</title>
 </head>
 
-<!--<body>
-    <h1>Mensaje VMS</h1>
-    <form method="post" action="./crear">
-        <label>Mensaje:</label> <br />
-        <input type="text" name="mensaje" required/><br />
-        <input type="submit" value="Enviar" />
-    </form>
-</body>-->
-
 <body>
 
     <form method="post" action="./crear">
@@ -36,28 +27,16 @@
                 <label class="hex" id="colorLabel1">#FFFFFF</label>
                 <input type="hidden" id="colorInput1" name="colorlinea1" />
 
-                <label>
-                    <input type="checkbox" class="Mysc">
-                    <i class="fa-solid fa-bold"></i>
+                <label class="uc">
+                    <input type="checkbox" name="picto">
                 </label>
 
-                <label>
-                    <input type="checkbox" class="Subr">
-                    <i class="fa-solid fa-italic"></i>
+                <label class="sem">
+                    <input type="checkbox" name="picto">
                 </label>
 
-                <label>
-                    <input type="checkbox" class="Tach">
-                    <i class="fa-solid fa-underline"></i>
-                </label>
-
-                <label>
-                    <input type="checkbox" class="MvmIzq">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                </label>
-                <label>
-                    <input type="checkbox" class="Blink">
-                    <i class="fa-solid fa-angles-left"></i>
+                <label class="slo">
+                    <input type="checkbox" name="picto">
                 </label>
 
                 <ul id="colorpicker1">
@@ -120,28 +99,16 @@
                 <input type="hidden" id="colorInput2" name="colorlinea2" />
 
 
-                <label>
-                    <input type="checkbox" class="Mysc">
-                    <i class="fa-solid fa-bold"></i>
+                <label class="uc">
+                    <input type="checkbox" name="picto1">
                 </label>
 
-                <label>
-                    <input type="checkbox" class="Subr">
-                    <i class="fa-solid fa-italic"></i>
+                <label class="sem">
+                    <input type="checkbox" name="picto1">
                 </label>
 
-                <label>
-                    <input type="checkbox" class="Tach">
-                    <i class="fa-solid fa-underline"></i>
-                </label>
-
-                <label>
-                    <input type="checkbox" class="MvmIzq">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                </label>
-                <label>
-                    <input type="checkbox" class="Blink">
-                    <i class="fa-solid fa-angles-left"></i>
+                <label class="slo">
+                    <input type="checkbox" name="picto1">
                 </label>
 
                 <ul id="colorpicker2">
@@ -200,32 +167,20 @@
                     <i class="fa-solid fa-palette"></i>
                 </label>
 
-                <label class="hex" id="colorLabel3" >#FFFFFF</label>
-                <input type="hidden" id="colorInput3" name="colorlinea3"/>
+                <label class="hex" id="colorLabel3">#FFFFFF</label>
+                <input type="hidden" id="colorInput3" name="colorlinea3" />
 
 
-                <label>
-                    <input type="checkbox" class="Mysc">
-                    <i class="fa-solid fa-bold"></i>
+                <label class="uc">
+                    <input type="checkbox" name="picto2">
                 </label>
 
-                <label>
-                    <input type="checkbox" class="Subr">
-                    <i class="fa-solid fa-italic"></i>
+                <label class="sem">
+                    <input type="checkbox" name="picto2">
                 </label>
 
-                <label>
-                    <input type="checkbox" class="Tach">
-                    <i class="fa-solid fa-underline"></i>
-                </label>
-
-                <label>
-                    <input type="checkbox" class="MvmIzq">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                </label>
-                <label>
-                    <input type="checkbox" class="Blink">
-                    <i class="fa-solid fa-angles-left"></i>
+                <label class="slo">
+                    <input type="checkbox" name="picto2">
                 </label>
 
                 <ul id="colorpicker3">
@@ -283,144 +238,168 @@
 
         document.addEventListener("DOMContentLoaded", function () {
 
-            var labels = document.querySelectorAll("label");
+            var grupos = document.querySelectorAll(".allmenu");
+            grupos.forEach(function (grupo) {
+                var labels = grupo.querySelectorAll("label");
 
-            labels.forEach(function (label) {
+                labels.forEach(function (label) {
 
-                label.addEventListener("click", function () {
+                    label.addEventListener("click", function () {
+                        var checkbox = label.querySelector("input[type='checkbox']");
+                        var isChecked = checkbox.checked;
 
-                    var checkbox = label.querySelector("input[type='checkbox']");
+                        var checkboxesEnGrupo = grupo.querySelectorAll("input[type='checkbox']");
+                        checkboxesEnGrupo.forEach(function (cb) {
+                            cb.parentNode.classList.remove("selected");
+                        });
 
-                    if (checkbox.checked) {
-                        label.classList.add("selected");
-                    } else {
-                        label.classList.remove("selected");
-                    }
+                        if (isChecked) {
+                            label.classList.add("selected");
+                        }
+                    });
                 });
             });
         });
 
-    document.addEventListener("DOMContentLoaded", function () {
-
-        function cambiarColorLabel1() {
-            var colorpicker = document.getElementById("colorpicker1");
-            var colorLabel = document.getElementById("colorLabel1");
-            var colorInput1 = document.getElementById("colorInput1");
-
-
-            var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
-
-            var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
-
-            var hexadecimal = rgbToHex(colorFondo);
-
-            colorLabel.textContent = hexadecimal;
-
-            colorInput1.value = hexadecimal;
-
-            colorLabel.style.color = hexadecimal;
+        function deseleccionarOtrosEnGrupo(checkbox) {
+            var grupo = checkbox.getAttribute('name');
+            var checkboxes = document.querySelectorAll('input[type="checkbox"][name="' + grupo + '"]');
+            checkboxes.forEach(function (cb) {
+                if (cb !== checkbox) {
+                    cb.checked = false;
+                }
+            });
         }
 
-        function rgbToHex(color) {
-            var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
 
-            function componentToHex(c) {
-                var hex = parseInt(c).toString(16);
-                return hex.length == 1 ? "0" + hex : hex;
-            }
-
-            var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
-            return hexadecimal;
-        }
-
-        var radios = document.querySelectorAll("#colorpicker1 input[type='radio']");
-        radios.forEach(function (radio) {
-            radio.addEventListener("click", function () {
-                cambiarColorLabel1();
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                deseleccionarOtrosEnGrupo(checkbox);
             });
         });
 
-        cambiarColorLabel1();
-    });
+        document.addEventListener("DOMContentLoaded", function () {
 
-    document.addEventListener("DOMContentLoaded", function () {
-        function cambiarColorLabel2() {
-            var colorpicker = document.getElementById("colorpicker2");
-            var colorLabel = document.getElementById("colorLabel2");
-            var colorInput2 = document.getElementById("colorInput2");
-            var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
+            function cambiarColorLabel1() {
+                var colorpicker = document.getElementById("colorpicker1");
+                var colorLabel = document.getElementById("colorLabel1");
+                var colorInput1 = document.getElementById("colorInput1");
 
-            var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
 
-            var hexadecimal = rgbToHex(colorFondo);
+                var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
 
-            colorLabel.textContent = hexadecimal;
+                var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
 
-            colorInput2.value = hexadecimal;
+                var hexadecimal = rgbToHex(colorFondo);
 
-            colorLabel.style.color = hexadecimal;
-        }
+                colorLabel.textContent = hexadecimal;
 
-        function rgbToHex(color) {
-            var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                colorInput1.value = hexadecimal;
 
-            function componentToHex(c) {
-                var hex = parseInt(c).toString(16);
-                return hex.length == 1 ? "0" + hex : hex;
+                colorLabel.style.color = hexadecimal;
             }
 
-            var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
-            return hexadecimal;
-        }
+            function rgbToHex(color) {
+                var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
 
-        var radios = document.querySelectorAll("#colorpicker2 input[type='radio']");
-        radios.forEach(function (radio) {
-            radio.addEventListener("click", function () {
-                cambiarColorLabel2();
-            });
-        });
+                function componentToHex(c) {
+                    var hex = parseInt(c).toString(16);
+                    return hex.length == 1 ? "0" + hex : hex;
+                }
 
-        cambiarColorLabel2();
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        function cambiarColorLabel3() {
-            var colorpicker = document.getElementById("colorpicker3");
-            var colorLabel = document.getElementById("colorLabel3");
-            var colorInput3 = document.getElementById("colorInput3");
-
-            var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
-
-            var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
-
-            var hexadecimal = rgbToHex(colorFondo);
-
-            colorLabel.textContent = hexadecimal;
-            colorInput3.value = hexadecimal;
-            colorLabel.style.color = hexadecimal;
-        }
-
-        function rgbToHex(color) {
-            var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-
-            function componentToHex(c) {
-                var hex = parseInt(c).toString(16);
-                return hex.length == 1 ? "0" + hex : hex;
+                var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
+                return hexadecimal;
             }
 
-            var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
-            return hexadecimal;
-        }
-
-        var radios = document.querySelectorAll("#colorpicker3 input[type='radio']");
-        radios.forEach(function (radio) {
-            radio.addEventListener("click", function () {
-                cambiarColorLabel3();
+            var radios = document.querySelectorAll("#colorpicker1 input[type='radio']");
+            radios.forEach(function (radio) {
+                radio.addEventListener("click", function () {
+                    cambiarColorLabel1();
+                });
             });
+
+            cambiarColorLabel1();
         });
 
-        cambiarColorLabel3();
-    });
+        document.addEventListener("DOMContentLoaded", function () {
+            function cambiarColorLabel2() {
+                var colorpicker = document.getElementById("colorpicker2");
+                var colorLabel = document.getElementById("colorLabel2");
+                var colorInput2 = document.getElementById("colorInput2");
+                var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
+
+                var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
+
+                var hexadecimal = rgbToHex(colorFondo);
+
+                colorLabel.textContent = hexadecimal;
+
+                colorInput2.value = hexadecimal;
+
+                colorLabel.style.color = hexadecimal;
+            }
+
+            function rgbToHex(color) {
+                var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+                function componentToHex(c) {
+                    var hex = parseInt(c).toString(16);
+                    return hex.length == 1 ? "0" + hex : hex;
+                }
+
+                var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
+                return hexadecimal;
+            }
+
+            var radios = document.querySelectorAll("#colorpicker2 input[type='radio']");
+            radios.forEach(function (radio) {
+                radio.addEventListener("click", function () {
+                    cambiarColorLabel2();
+                });
+            });
+
+            cambiarColorLabel2();
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            function cambiarColorLabel3() {
+                var colorpicker = document.getElementById("colorpicker3");
+                var colorLabel = document.getElementById("colorLabel3");
+                var colorInput3 = document.getElementById("colorInput3");
+
+                var liSeleccionado = colorpicker.querySelector("input[type='radio']:checked").parentElement;
+
+                var colorFondo = window.getComputedStyle(liSeleccionado).getPropertyValue("background-color");
+
+                var hexadecimal = rgbToHex(colorFondo);
+
+                colorLabel.textContent = hexadecimal;
+                colorInput3.value = hexadecimal;
+                colorLabel.style.color = hexadecimal;
+            }
+
+            function rgbToHex(color) {
+                var valores = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+                function componentToHex(c) {
+                    var hex = parseInt(c).toString(16);
+                    return hex.length == 1 ? "0" + hex : hex;
+                }
+
+                var hexadecimal = "#" + componentToHex(valores[1]) + componentToHex(valores[2]) + componentToHex(valores[3]);
+                return hexadecimal;
+            }
+
+            var radios = document.querySelectorAll("#colorpicker3 input[type='radio']");
+            radios.forEach(function (radio) {
+                radio.addEventListener("click", function () {
+                    cambiarColorLabel3();
+                });
+            });
+
+            cambiarColorLabel3();
+        });
 
     </script>
 

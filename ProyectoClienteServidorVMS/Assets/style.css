@@ -83,6 +83,24 @@ h2 {
     margin-bottom: 10px;
 }
 
+.uc, .sem, .slo{
+    background-repeat: no-repeat;
+    background-size: auto 30px; /* Ancho automático y alto de 30px */
+    background-position: center;
+}
+
+.slo{
+    background-image: url('slow.png');
+}
+
+.sem{
+    background-image: url('sem.png');
+}
+
+.uc{
+    background-image: url('uc.png');
+}
+
 .chkColor {
     display: none;
 }
