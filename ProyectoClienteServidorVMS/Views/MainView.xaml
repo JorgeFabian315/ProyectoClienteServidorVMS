@@ -17,19 +17,13 @@
     </Window.DataContext>
     <Window.Resources></Window.Resources>
     <Grid>
+       
         <!--#REGION LISTBOX COLUMNA 0 DEL GRID-->
-        <StackPanel Background="#2C2E39"
-                    Margin="10,10,10,10"
-                    Width="300"
-                    HorizontalAlignment="Right">
-            <TextBlock Text="Mensajes recibidos"
-                       Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                       Foreground="White"
-                       Margin="10"
-                       HorizontalAlignment="Center"
-                       />
             <ListBox SelectedItem="{Binding Vms}"
+                     Width="300"
                      SelectedIndex="{Binding Indicevms}"
+                     HorizontalAlignment="Right"
+                     Background="Black"
                      ItemsSource="{Binding ListaVMS}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -86,7 +80,6 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-        </StackPanel>
         <!--#ENDREGION LISTBOX COLUMNA 0 DEL GRID-->
         <!--#REGION PANTALLA VMS-->
         <Border Width="780"
@@ -208,6 +201,11 @@
             </Border>
         </Border>
         <!--#ENDREGION PANTALLA VMS-->
+        <TextBlock Text="{Binding IP}"
+                   Foreground="Green"
+                   FontSize="30"
+                   Margin="20,0,0,0"
+                   VerticalAlignment="Top" />
     </Grid>
 </Window>
 

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -19,6 +20,15 @@ namespace ProyectoClienteServidorVMS.ViewModels
     {
         private VMSServices _server = new();
         public ObservableCollection<VMS> ListaVMS { get; set; } = new();
+        public string IP
+        {
+            get
+            {
+                return string.Join(",", Dns.GetHostAddresses(Dns.GetHostName())
+                    .Where(x => x.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    .Select(x => x.ToString()));
+            }
+        }
 
         [ObservableProperty]
         public VMS vms = new();
