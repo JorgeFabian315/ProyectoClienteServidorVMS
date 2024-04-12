@@ -33,77 +33,98 @@ namespace ProyectoClienteServidorVMS.Services
 
         private void Escuchar()
         {
-            while (server.IsListening)
+            while (true)
             {
                 HttpListenerContext? context = server.GetContext();
 
-                if (context != null)
+                try
                 {
-                    string indexHtml = File.ReadAllText("assets/index.html");
-                    string estilos = File.ReadAllText("assets/style.css");
-                    string paginaRegresar = File.ReadAllText("assets/regresar.html");
-
-
-                    if (context.Request.Url != null)
+                    if (context != null)
                     {
-                        if (context.Request.Url.LocalPath == "/vms/")
+                        string indexHtml = File.ReadAllText("assets/index.html");
+                        string estilos = File.ReadAllText("assets/style.css");
+                        string paginaRegresar = File.ReadAllText("assets/regresar.html");
+
+
+                        if (context.Request.Url != null)
                         {
-                  
-                            EnviarRespuesta(context, indexHtml, estilos);
-                        }
-
-                        else if (context.Request.HttpMethod == "POST" && context.Request.Url.LocalPath == "/vms/crear")
-                        {
-                            VMS vms = new();
-
-                            RecibirVMS(context, ref vms);
-
-                            Application.Current.Dispatcher.Invoke(() =>
+                            if (context.Request.Url.LocalPath == "/vms/")
                             {
-                                VMSRecibido?.Invoke(this, vms);
-                            });
 
-                            EnviarRespuesta(context, paginaRegresar, estilos);
-                        }
-                        else
-                        {
-                            context.Response.StatusCode = 400;
-                            context.Response.Close();
+                                EnviarRespuesta(context, indexHtml, estilos);
+                            }
+
+                            else if (context.Request.HttpMethod == "POST" && context.Request.Url.LocalPath == "/vms/crear")
+                            {
+                                VMS vms = new();
+
+                                RecibirVMS(context, ref vms);
+
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    VMSRecibido?.Invoke(this, vms);
+                                });
+
+                                EnviarRespuesta(context, paginaRegresar, estilos);
+                            }
+                            else
+                            {
+                                context.Response.StatusCode = 400;
+                                context.Response.Close();
+                            }
                         }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
 
         public void EnviarRespuesta(HttpListenerContext context, string contenido, string? estilos = null)
         {
-            if (estilos != null)
-                contenido = contenido.Replace("</head>", $"<style>{estilos}</style></head>");
+            try
+            {
+                if (estilos != null)
+                    contenido = contenido.Replace("</head>", $"<style>{estilos}</style></head>");
 
-            byte[] buffer = Encoding.UTF8.GetBytes(contenido);
-            context.Response.ContentLength64 = buffer.Length;
-            context.Response.OutputStream.Write(buffer, 0, buffer.Length);
-            context.Response.StatusCode = (int)HttpStatusCode.OK;
-            context.Response.Close();
+                byte[] buffer = Encoding.UTF8.GetBytes(contenido);
+                context.Response.ContentLength64 = buffer.Length;
+                context.Response.OutputStream.Write(buffer, 0, buffer.Length);
+                context.Response.StatusCode = (int)HttpStatusCode.OK;
+                context.Response.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void RecibirVMS(HttpListenerContext context, ref VMS vms)
         {
-            byte[] bufferdatos = new byte[context.Request.ContentLength64];
-            context.Request.InputStream.Read(bufferdatos, 0, bufferdatos.Length);
-            string datos = Encoding.UTF8.GetString(bufferdatos);
+            try
+            {
+                byte[] bufferdatos = new byte[context.Request.ContentLength64];
+                context.Request.InputStream.Read(bufferdatos, 0, bufferdatos.Length);
+                string datos = Encoding.UTF8.GetString(bufferdatos);
 
-            var diccionario = HttpUtility.ParseQueryString(datos);
+                var diccionario = HttpUtility.ParseQueryString(datos);
 
-            vms.Linea1 = diccionario["linea1"] ?? "";
-            vms.Linea2 = diccionario["linea2"] ?? "";
-            vms.Linea3 = diccionario["linea3"] ?? "";
-            vms.ColorLinea1 = diccionario["colorlinea1"] == "" ? "#FFF" : diccionario["colorlinea1"] ?? "";
-            vms.ColorLinea2 = diccionario["colorlinea2"] == "" ? "#FFF" : diccionario["colorlinea2"] ?? "";
-            vms.ColorLinea3 = diccionario["colorlinea3"] == "" ? "#FFF" : diccionario["colorlinea3"] ?? "";
-            vms.ImagenLinea1 = diccionario["imagenlinea1"] ?? "";
-            vms.ImagenLinea2 = diccionario["imagenlinea2"] ?? "";
-            vms.ImagenLinea3 = diccionario["imagenlinea3"] ?? "";
+                vms.Linea1 = diccionario["linea1"] ?? "";
+                vms.Linea2 = diccionario["linea2"] ?? "";
+                vms.Linea3 = diccionario["linea3"] ?? "";
+                vms.ColorLinea1 = diccionario["colorlinea1"] == "" ? "#FFF" : diccionario["colorlinea1"] ?? "";
+                vms.ColorLinea2 = diccionario["colorlinea2"] == "" ? "#FFF" : diccionario["colorlinea2"] ?? "";
+                vms.ColorLinea3 = diccionario["colorlinea3"] == "" ? "#FFF" : diccionario["colorlinea3"] ?? "";
+                vms.ImagenLinea1 = diccionario["imagenlinea1"] ?? "";
+                vms.ImagenLinea2 = diccionario["imagenlinea2"] ?? "";
+                vms.ImagenLinea3 = diccionario["imagenlinea3"] ?? "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void Apagar()
